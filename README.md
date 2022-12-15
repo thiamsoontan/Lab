@@ -4,8 +4,6 @@
 
 Clone the repo to your laptop
 
-unzip caf-terraform-gcc-starter-lab-main.zip to a folder in your local drive
-
 Open the folder caf-terraform-gcc-starter-lab-main in Visual Studio Code
 
 Note: reopen in container when prompt in VS code
