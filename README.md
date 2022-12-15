@@ -1,5 +1,11 @@
 # CAF Terraform for GCC - Lab
 
+## Getting Started
+
+Clone the repo to your laptop
+unzip lab.zip to a folder in your local drive
+Open the folder in Visual Studio Code
+
 ## Lab 1 - GCC Development Environment
 
 Go to /tf/caf/gcc-dev-env/README.md and follow the steps in the readme file.
