@@ -3,7 +3,9 @@
 ## Getting Started
 
 Clone the repo to your laptop
+
 unzip lab.zip to a folder in your local drive
+
 Open the folder in Visual Studio Code
 
 ## Lab 1 - GCC Development Environment
