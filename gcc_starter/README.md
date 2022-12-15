@@ -1,0 +1,1 @@
+# Go to README.md at /tf/caf/gcc_starter/landingzone/configuration/level0/launchpad/README.md
