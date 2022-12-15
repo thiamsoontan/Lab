@@ -1,24 +1,33 @@
-
 # CAF Terraform for GCC - Lab
 
-# Lab 1 - GCC Development Environment
+## Getting Started
+
+Clone the repo to your laptop
+
+unzip caf-terraform-gcc-starter-lab-main.zip to a folder in your local drive
+
+Open the folder caf-terraform-gcc-starter-lab-main in Visual Studio Code
+
+Note: reopen in container when prompt in VS code
+
+## Lab 1 - GCC Development Environment
 
 Go to /tf/caf/gcc-dev-env/README.md and follow the steps in the readme file.
 
-# Lab 2 - Launchpad
+## Lab 2 - Launchpad
 
 Go to /tf/caf/gcc_starter/landingzone/configuration/level0/launchpad/README.md and follow the steps in the readme file.
 
-# Lab 3 - Networking
+## Lab 3 - Networking
 
 Go to /tf/caf/gcc_starter/landingzone/configuration/level3/networking_spoke_internet/README.md and follow the steps in the readme file.
 
-# Lab 4 - Solution Accelerator
+## Lab 4 - Solution Accelerator
 
 Go to /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows/Readme.md and follow the steps in the readme file.
 
 
-# Lab 5 - Clean up 
+## Lab 5 - Clean up 
 
 ```bash
 rover -lz rover -lz /tf/caf/landingzones/caf_solution \
@@ -55,5 +64,5 @@ cd ..
 ```
 
 
-# Troubleshooting Tips
+## Troubleshooting Tips
 1. Unable to create KeyVault or there is existing keyvault name, then go to managed deleted vaults to ensure all deleted keyvaults are purge.
