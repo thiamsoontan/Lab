@@ -4,7 +4,7 @@
 
 Clone the repo to your laptop
 
-Open the working folder caf-terraform-gcc-starter-lab-main in Visual Studio Code
+Open the working folder in Visual Studio Code
 
 (if required), install VSCode extension “Remote-Containers”
 
