@@ -1,0 +1,12 @@
+landingzone = {
+  backend_type        = "{{ caf_terraform.launchpad.backend_type | default("azurerm")}}"
+  global_settings_key = "{{ resources.tfstates.platform.launchpad.lz_key_name }}"
+  level               = "{{ resources.tfstates.platform.launchpad.level }}"
+  key                 = "{{ resources.tfstates.platform.billing_subscription_role_delegations.lz_key_name }}"
+  tfstates = {
+    {{ resources.tfstates.platform.launchpad.lz_key_name }} = {
+      level   = "current"
+      tfstate = "{{ resources.tfstates.platform.launchpad.tfstate }}"
+    }
+  }
+}

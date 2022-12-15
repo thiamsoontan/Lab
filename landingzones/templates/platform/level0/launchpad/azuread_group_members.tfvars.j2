@@ -1,0 +1,38 @@
+{% if bootstrap.enable_azuread_groups %}
+azuread_groups_membership = {
+  caf_platform_maintainers = {
+{% if bootstrap.azure_landing_zones.identity.azuread_identity_mode == 'logged_in_user' %}
+    object_ids = {
+      logged_in = {
+        keys = ["user"]
+      }
+    }
+{% endif %}
+{% if bootstrap.azure_landing_zones.identity.azuread_identity_mode != 'logged_in_user' %}
+    members = {
+{% if bootstrap.azure_landing_zones.identity.caf_platform_maintainers.user_principal_names is defined %}
+      user_principal_names = [
+        "{{ bootstrap.billing_subscription_role_delegations.azuread_user_ea_account_owner }}",
+{% if bootstrap.azure_landing_zones.identity.azuread_identity_mode != 'logged_in_user' and bootstrap.azure_landing_zones.identity.caf_platform_maintainers.user_principal_names is mapping%}
+{% for user in bootstrap.azure_landing_zones.identity.caf_platform_maintainers.user_principal_names %}
+        "{{ user }}",
+{% endfor %}
+{% endif %}
+      ]
+{% endif %}
+    }
+{% endif %}
+  }
+  caf_platform_contributors = {
+    members = {
+{% if bootstrap.azure_landing_zones.identity.azuread_identity_mode != 'logged_in_user' %}
+{% if bootstrap.azure_landing_zones.identity.caf_platform_maintainers.user_principal_names is mapping %}
+      user_principal_names = {{ bootstrap.azure_landing_zones.identity.caf_platform_maintainers.user_principal_names  | replace('None','[]') | replace('[', '[\n') | replace(']', '\n]') | replace(',', ',\n') | replace('\'','\"') }}
+{% endif %}
+{% endif %}
+    }
+  }
+}
+{% else %}
+# Azure AD Groups in bootstrap.enable_azuread_groups is not set to true
+{% endif %}

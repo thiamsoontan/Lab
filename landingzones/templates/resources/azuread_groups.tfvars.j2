@@ -1,0 +1,33 @@
+azuread_groups = {
+{% for key, ad_group in resources[tfstate_resource].resources[subscription_key].azuread_groups.items() %}
+  {{ key }} = {
+    name        = "{{ ad_group.name }}"
+{% if ad_group.description is defined %}
+    description = "{{ ad_group.description }}"
+{% endif %}
+{% if ad_group.members is defined %}
+    members = {
+{% if ad_group.members.user_principal_names is defined %}
+      user_principal_names = {{ ad_group.members.user_principal_names | replace('None','[]') | replace('\'','\"')  }}
+{% endif %}
+{% if ad_group.members.group_names is defined %}
+      group_names          = {{ ad_group.members.group_names | replace('None','[]') | replace('\'','\"')  }}
+{% endif %}
+{% if ad_group.members.object_ids is defined %}
+      object_ids           = {{ ad_group.members.object_ids | string | replace('None','[]') | replace('\'','\"')  }}
+{% endif %}
+{% if ad_group.members.group_keys is defined %}
+      group_keys           = {{ ad_group.members.group_keys | replace('None','[]') | replace('\'','\"')  }}
+{% endif %}
+{% if ad_group.members.azuread_service_principal_keys is defined %}
+      azuread_service_principal_keys = {{ ad_group.members.azuread_service_principal_keys | replace('None','[]') | replace('\'','\"')  }}
+{% endif %}
+    }
+{% endif %}
+{% if ad_group.owners is defined %}
+    owners = {{ ad_group.owners| string | replace('None','[]') | replace('\'','\"')  }}
+{% endif %}
+    prevent_duplicate_name = {{ ad_group.owners.prevent_duplicate_name | default(true) | string | lower }}
+  }
+{% endfor %}
+}

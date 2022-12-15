@@ -1,0 +1,12 @@
+landingzone = {
+  backend_type        = "azurerm"
+  global_settings_key = "{{ resources.tfstates.platform.management.lz_key_name }}"
+  level               = "{{ resources.tfstates.platform.express_route_circuits[circuit].level }}"
+  key                 = "{{ resources.tfstates.platform.express_route_circuits[circuit].lz_key_name }}"
+  tfstates = {
+    {{ resources.tfstates.platform.management.lz_key_name }} = {
+      level   = "lower"
+      tfstate = "{{ resources.tfstates.platform.management.tfstate }}"
+    }
+  }
+}

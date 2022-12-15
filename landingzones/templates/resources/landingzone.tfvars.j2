@@ -1,0 +1,62 @@
+landingzone = {
+  backend_type        = "{{ tfstate_object.backend_type | default("azurerm") }}"
+  level               = "{{ tfstate_object.level }}"
+  key                 = "{{ tfstate_object.lz_key_name }}"
+{% if resources[tfstate_resource].deployments.landingzone.global_settings_key.platform is defined %}
+{% if resources[tfstate_resource].deployments.landingzone.global_settings_key.platform.values() | first %}
+  global_settings_key               = "{{ resources.tfstates['platform'][resources[tfstate_resource].deployments.landingzone.global_settings_key.platform.keys() | first][resources[tfstate_resource].deployments.landingzone.global_settings_key.platform.values() | first].lz_key_name }}"
+{% else %}
+  global_settings_key               = "{{ resources.tfstates['platform'][resources[tfstate_resource].deployments.landingzone.global_settings_key.platform.keys() | first].lz_key_name }}"
+{% endif %}
+{% elif resources[tfstate_resource].deployments.landingzone.global_settings_key.asvm is defined %}
+  global_settings_key               = "{{ resources.tfstates['asvm'][resources[tfstate_resource].deployments.landingzone.global_settings_key.asvm.keys() | first].lz_key_name }}"
+{% endif %}
+{% if resources[tfstate_resource].deployments.landingzone.remote_tfstates is defined %}
+  tfstates = {
+{% if resources[tfstate_resource].deployments.landingzone.remote_tfstates.asvm is defined %}
+{% if resources[tfstate_resource].deployments.landingzone.remote_tfstates.asvm.values() | first  %}
+{% for a_key, a_value in resources[tfstate_resource].deployments.landingzone.remote_tfstates.asvm.items() %}
+    {{ resources.tfstates['asvm'][a_key][a_value].lz_key_name }} = {
+      tfstate   = "{{ resources.tfstates['asvm'][a_key][a_value].tfstate }}"
+      workspace = "{{ resources.tfstates['asvm'][a_key].workspace }}"
+    }
+{% endfor %}
+{% else %} 
+    {{ resources.tfstates['asvm'][resources[tfstate_resource].deployments.landingzone.remote_tfstates.asvm.keys() | first].lz_key_name }} = {
+      tfstate   = "{{ resources.tfstates['asvm'][resources[tfstate_resource].deployments.landingzone.remote_tfstates.asvm.keys() | first].tfstate }}"
+      workspace = "{{ resources.tfstates['asvm'][resources[tfstate_resource].deployments.landingzone.remote_tfstates.asvm.keys() | first].workspace | default('tfstate')}}"
+    }
+{% endif %}
+{% endif %}
+{% if resources[tfstate_resource].deployments.landingzone.remote_tfstates.platform is defined %}
+{% for p_key in resources[tfstate_resource].deployments.landingzone.remote_tfstates.platform.keys() %}
+{% if resources.tfstates['platform'][p_key][resources[tfstate_resource].deployments.landingzone.remote_tfstates.platform[p_key]] is defined  %}
+    {{ resources.tfstates['platform'][p_key][resources[tfstate_resource].deployments.landingzone.remote_tfstates.platform[p_key]].lz_key_name }} = {
+      {% set remote_tfstate = resources.tfstates['platform'][p_key][resources[tfstate_resource].deployments.landingzone.remote_tfstates.platform[p_key]] %}
+      tfstate   = "{{ remote_tfstate.tfstate }}"
+      workspace = "{{ remote_tfstate.workspace | default('tfstate') }}"
+{% if remote_tfstate.level != level %}
+      level     = "lower"
+{% endif %}
+    }
+{% else %}
+    {{ resources.tfstates['platform'][p_key].lz_key_name }} = {
+      tfstate   = "{{ resources.tfstates['platform'][p_key].tfstate }}"
+      workspace = "{{ resources.tfstates['platform'][p_key].workspace | default('tfstate') }}"
+{% if resources.tfstates['platform'][p_key].level != level %}
+      level     = "lower"
+{% endif %}
+    }
+{% endif %}
+{% endfor %}
+{% endif %}
+  }
+{% endif %}
+}
+{% if resources[tfstate_resource].deployments.custom_variables is defined %}
+custom_variables = {
+{% for cv_key, cv_value in resources[tfstate_resource].deployments.custom_variables.items() %}
+  {{cv_key}} = "{{cv_value}}"
+{% endfor %}
+}
+{% endif %}

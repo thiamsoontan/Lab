@@ -1,0 +1,10 @@
+#
+# Define the settings for CAF diagnostics log analytics workspace and solution map
+#
+
+diagnostic_log_analytics = {
+{% for key, value in resources[tfstate_resource].resources[subscription_key].diagnostic_log_analytics.items() %}
+{% include 'log_analytics.j2' %}
+{% endfor %}
+
+}

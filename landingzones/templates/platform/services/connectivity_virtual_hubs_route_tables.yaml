@@ -1,0 +1,63 @@
+virtual_hubs_route_tables_{{env}}:
+  gitops:
+    caf_landingzone_branch: {{topology.caf_landingzone_branch}}
+
+  relative_destination_folder: level2/connectivity/virtual_hubs_route_tables/{{env}}
+
+  tfstate:
+    lz_key_name: virtual_hubs_route_tables_{{env}}
+    tfstate: connectivity_virtual_hubs_route_tables_{{env}}.tfstate
+    workspace: tfstate
+    level: level2
+    config_file: virtual_hubs_route_tables.yaml
+    identity_aad_key: cred_connectivity
+    # Do not rename the tfstate_key_name
+    tfstate_key_name: virtual_hubs_route_tables
+
+  deployments:
+    landingzone:
+      global_settings_key:
+        platform:
+          virtual_hubs: {{env}}
+      remote_tfstates:
+        platform:
+          virtual_hubs: {{env}}
+          secure_firewalls: {{env}}
+          private_dns_firewalls: {{env}}
+
+  resources:
+    connectivity:
+      virtual_hub_route_table_routes:
+        all_traffic:
+          name: all_traffic
+          virtual_hub:
+            lz_key: connectivity_virtual_hubs_{{env}}
+            key: {{env}}
+          route_table:
+            name: defaultRouteTable
+          destinations_type: CIDR
+          next_hop_type: ResourceId
+          next_hop:
+            resource_type: azurerm_firewall
+            lz_key: connectivity_secure_firewalls_{{env}}
+            key: fw_secure_{{env}}
+          destinations:
+            - 0.0.0.0/0
+            - 10.0.0.0/8
+            - 172.16.0.0/12
+            - 192.168.0.0/16
+        # public_traffic:
+        #   name: public_traffic
+        #   virtual_hub:
+        #     lz_key: connectivity_virtual_hubs_{{env}}
+        #     key: {{env}}
+        #   route_table:
+        #     name: defaultRouteTable
+        #   destinations_type: CIDR
+        #   next_hop_type: ResourceId
+        #   next_hop:
+        #     resource_type: azurerm_firewall
+        #     lz_key: connectivity_secure_firewalls_{{env}}
+        #     key: fw_secure_{{env}}
+        #   destinations:
+        #     - 0.0.0.0/0

@@ -1,0 +1,3 @@
+{% import 'library.j2' as render %}
+{% set value = resources[tfstate_resource].resources[subscription_key].container_groups %}
+{{ render.hcl("container_groups", value, multiple_lines_list=multiple_lines_list) }}
