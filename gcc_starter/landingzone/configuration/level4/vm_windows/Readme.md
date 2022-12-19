@@ -17,12 +17,13 @@ Open file in VS code
 2. Add subnet_id below subnet_key at line 87 as shown below
         # vnet_key                = "vnet_region1"
         # subnet_key              = "example"
-        subnet_id = "/subscriptions/<subscription id>/resourceGroups/<gcc vnet resource group>/providers/Microsoft.Network/virtualNetworks/<gcc vnet name>/subnets/ignite-snet-app-internet"
+        subnet_id = "/subscriptions/<subscription id>/resourceGroups/<gcc vnet resource group>/providers/Microsoft.Network/virtualNetworks/<gcc vnet name>/subnets/ignite-snet-app-internet<random code>"
   
   Note: 
   Replace <subscription id> with your own subscription id. 
   Replace <gcc vnet resource group> with "gcci-rg-agency-vnets". 
   Replace <gcc vnet name> with "gcci-vnet-internet"
+  Replace <random code> with the random code from the app subnet name in gcci-vnet-internet
 
 
 ## Deployment
