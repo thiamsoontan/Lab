@@ -12,7 +12,7 @@ passthrough = false
 # Enable tag inheritance (can be changed)
 inherit_tags = false
 # When passthrough is set to false, define the number of random characters to add to the names
-random_length = 0
+random_length = 3
 # Set the prefix that will be added to all azure resources.
 # if not set and passthrough=false, the CAF module generates a random one.
 # cluster or agency code - project code 
