@@ -1,2 +1,0 @@
-variable "settings" {}
-variable "objects" {}
