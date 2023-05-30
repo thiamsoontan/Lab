@@ -85,7 +85,7 @@ virtual_machines = {
         #vnet_key                = "vnet_region1"
         #subnet_key              = "example"
         # management infra subnet        
-        subnet_id = "/subscriptions/<subscription id>/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet/subnets/ignite-snet-app-internet"
+        subnet_id = "/subscriptions/<subscription id>/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet/subnets/ignite-snet-app-internet<random code>"
         name                    = "0"
         enable_ip_forwarding    = false
         internal_dns_name_label = "nic0"
