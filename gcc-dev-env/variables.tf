@@ -24,6 +24,7 @@ variable "random_string_length" {
 variable "location" {
   # default = "East US"
   default = "southeastasia"  
+  # default = "australiaeast"    
 }
 
 # Storage account type
@@ -55,6 +56,13 @@ variable "gcci_virtual_networks" {
       tags          = {}
     } 
 
+    gcci_egress_vnet = {
+      rg_key        = "gcci_vnets_rg"
+      name          = "gcci-vnet-egress"
+      address_space = ["172.17.1.0/24"]
+      tags          = {}
+    }     
+
     gcci_internet_vnet = {
       rg_key        = "gcci_vnets_rg"
       name          = "gcci-vnet-internet"
@@ -62,12 +70,12 @@ variable "gcci_virtual_networks" {
       tags          = {}
     }
 
-    gcci_intranet_vnet = {
-      rg_key        = "gcci_vnets_rg"
-      name          = "gcci-vnet-intranet"
-      address_space = ["10.0.0.0/20"]
-      tags          = {}
-    }
+    # gcci_intranet_vnet = {
+    #   rg_key        = "gcci_vnets_rg"
+    #   name          = "gcci-vnet-intranet"
+    #   address_space = ["10.0.0.0/20"]
+    #   tags          = {}
+    # }
 
     gcci_mgmt_vnet = {
       rg_key        = "gcci_vnets_rg"
@@ -88,7 +96,7 @@ variable "gcci_virtual_networks" {
   }
 }
 
-# Virtual network peerings
+# Virtual network peerings - not working
 variable "gcci_vnet_peers" {
   default = {
 
@@ -103,16 +111,40 @@ variable "gcci_vnet_peers" {
       use_remote_gateways          = "false"   
     }
 
-    internet_intranet_vnet_peer = {
+    internet_ingress_vnet_peer = {
       rg_key          = "gcci_vnets_rg"
       vnet_key        = "gcci_internet_vnet"
-      remote_vnet_key = "gcci_intranet_vnet"
-      name            = "gcci-inter-intra-peering"
+      remote_vnet_key = "gcci_ingress_vnet"
+      name            = "gcci-inter-ingress-peering"
       allow_virtual_network_access = "true"
       allow_forwarded_traffic      = "true"
       allow_gateway_transit        = "false"
       use_remote_gateways          = "false"   
-    }
+    }    
+
+    # 26 Apr 2023 - no peering between internet and intranet
+    # internet_intranet_vnet_peer = {
+    #   rg_key          = "gcci_vnets_rg"
+    #   vnet_key        = "gcci_internet_vnet"
+    #   remote_vnet_key = "gcci_intranet_vnet"
+    #   name            = "gcci-inter-intra-peering"
+    #   allow_virtual_network_access = "true"
+    #   allow_forwarded_traffic      = "true"
+    #   allow_gateway_transit        = "false"
+    #   use_remote_gateways          = "false"   
+    # }
+
+    # 26 Apr 2023 - no peering between internet and intranet
+    # intranet_internet_vnet_peer = {
+    #   rg_key          = "gcci_vnets_rg"
+    #   vnet_key        = "gcci_intranet_vnet"
+    #   remote_vnet_key = "gcci_internet_vnet"
+    #   name            = "gcci-intra-inter-peering"
+    #   allow_virtual_network_access = "true"
+    #   allow_forwarded_traffic      = "true"
+    #   allow_gateway_transit        = "false"
+    #   use_remote_gateways          = "false"   
+    # }    
 
     mgmt_internet_vnet_peer = {
       rg_key          = "gcci_vnets_rg"
@@ -125,22 +157,55 @@ variable "gcci_vnet_peers" {
       use_remote_gateways          = "false"
     }
 
-    mgmt_intranet_vnet_peer = {
+    internet_mgmt_vnet_peer = {
       rg_key          = "gcci_vnets_rg"
-      vnet_key        = "gcci_mgmt_vnet"
-      remote_vnet_key = "gcci_intranet_vnet"
-      name            = "gcci-mgmt-intra-peering"
+      vnet_key        = "gcci_internet_vnet"
+      remote_vnet_key = "gcci_mgmt_vnet"
+      name            = "gcci-inter-mgmt-peering"
       allow_virtual_network_access = "true"
       allow_forwarded_traffic      = "true"
       allow_gateway_transit        = "false"
       use_remote_gateways          = "false"
     }
 
+    # mgmt_intranet_vnet_peer = {
+    #   rg_key          = "gcci_vnets_rg"
+    #   vnet_key        = "gcci_mgmt_vnet"
+    #   remote_vnet_key = "gcci_intranet_vnet"
+    #   name            = "gcci-mgmt-intra-peering"
+    #   allow_virtual_network_access = "true"
+    #   allow_forwarded_traffic      = "true"
+    #   allow_gateway_transit        = "false"
+    #   use_remote_gateways          = "false"
+    # }
+
+    # intranet_mgmt_vnet_peer = {
+    #   rg_key          = "gcci_vnets_rg"
+    #   vnet_key        = "gcci_intranet_vnet"
+    #   remote_vnet_key = "gcci_mgmt_vnet"
+    #   name            = "gcci-intra-mgmt-peering"
+    #   allow_virtual_network_access = "true"
+    #   allow_forwarded_traffic      = "true"
+    #   allow_gateway_transit        = "false"
+    #   use_remote_gateways          = "false"
+    # }    
+
     mgmt_devops_vnet_peer = {
       rg_key          = "gcci_vnets_rg"
       vnet_key        = "gcci_mgmt_vnet"
       remote_vnet_key = "gcci_devops_vnet"
       name            = "gcci-mgmt-devops-peering"
+      allow_virtual_network_access = "true"
+      allow_forwarded_traffic      = "true"
+      allow_gateway_transit        = "false"
+      use_remote_gateways          = "false"
+    }
+
+    devops_mgmt_vnet_peer = {
+      rg_key          = "gcci_vnets_rg"
+      vnet_key        = "gcci_devops_vnet"
+      remote_vnet_key = "gcci_mgmt_vnet"
+      name            = "gcci-devops-mgmt-peering"
       allow_virtual_network_access = "true"
       allow_forwarded_traffic      = "true"
       allow_gateway_transit        = "false"
@@ -158,6 +223,17 @@ variable "gcci_vnet_peers" {
       use_remote_gateways          = "false"
     }  
 
+    ingress_mgmt_vnet_peer = {
+      rg_key          = "gcci_vnets_rg"
+      vnet_key        = "gcci_ingress_vnet"
+      remote_vnet_key = "gcci_mgmt_vnet"
+      name            = "gcci-ingress-mgmt-peering"
+      allow_virtual_network_access = "true"
+      allow_forwarded_traffic      = "true"
+      allow_gateway_transit        = "false"
+      use_remote_gateways          = "false"
+    } 
+
     devops_inter_vnet_peer = {
       rg_key          = "gcci_vnets_rg"
       vnet_key        = "gcci_devops_vnet"
@@ -169,16 +245,38 @@ variable "gcci_vnet_peers" {
       use_remote_gateways          = "false"
     } 
 
-    devops_intra_vnet_peer = {
+    inter_devops_vnet_peer = {
       rg_key          = "gcci_vnets_rg"
-      vnet_key        = "gcci_devops_vnet"
-      remote_vnet_key = "gcci_intranet_vnet"
-      name            = "gcci-devops-intra-peering"
+      vnet_key        = "gcci_internet_vnet"
+      remote_vnet_key = "gcci_devops_vnet"
+      name            = "gcci-inter-devops-peering"
       allow_virtual_network_access = "true"
       allow_forwarded_traffic      = "true"
       allow_gateway_transit        = "false"
       use_remote_gateways          = "false"
-    }            
+    } 
+
+    # devops_intra_vnet_peer = {
+    #   rg_key          = "gcci_vnets_rg"
+    #   vnet_key        = "gcci_devops_vnet"
+    #   remote_vnet_key = "gcci_intranet_vnet"
+    #   name            = "gcci-devops-intra-peering"
+    #   allow_virtual_network_access = "true"
+    #   allow_forwarded_traffic      = "true"
+    #   allow_gateway_transit        = "false"
+    #   use_remote_gateways          = "false"
+    # }            
+
+    # intra_devops_vnet_peer = {
+    #   rg_key          = "gcci_vnets_rg"
+    #   vnet_key        = "gcci_intranet_vnet"
+    #   remote_vnet_key = "gcci_devops_vnet"
+    #   name            = "gcci-intra-devops-peering"
+    #   allow_virtual_network_access = "true"
+    #   allow_forwarded_traffic      = "true"
+    #   allow_gateway_transit        = "false"
+    #   use_remote_gateways          = "false"
+    # }  
 
   }
   type = any
