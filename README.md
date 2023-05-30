@@ -30,7 +30,7 @@ Go to /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows/Readme.md 
 ## Lab 5 - Clean up 
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level4 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows \
 -parallelism 30 \
@@ -40,7 +40,7 @@ rover -lz rover -lz /tf/caf/landingzones/caf_solution \
 ```
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level3 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level3/networking_spoke_internet \
 -env sandpit \
