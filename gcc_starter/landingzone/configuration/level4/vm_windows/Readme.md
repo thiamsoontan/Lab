@@ -29,7 +29,7 @@ Open file in VS code
 ## Deployment
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level4 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows \
 -parallelism 30 \
@@ -39,7 +39,7 @@ rover -lz rover -lz /tf/caf/landingzones/caf_solution \
 ```
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level4 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows \
 -parallelism 30 \
@@ -49,7 +49,7 @@ rover -lz rover -lz /tf/caf/landingzones/caf_solution \
 ```
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level4 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows \
 -parallelism 30 \

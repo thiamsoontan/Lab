@@ -20,7 +20,7 @@ Open file in VS code
 ## Deployment
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level3 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level3/networking_spoke_internet \
 -env sandpit \
@@ -29,7 +29,7 @@ rover -lz rover -lz /tf/caf/landingzones/caf_solution \
 ```
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level3 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level3/networking_spoke_internet \
 -env sandpit \
@@ -38,7 +38,7 @@ rover -lz rover -lz /tf/caf/landingzones/caf_solution \
 ```
 
 ```bash
-rover -lz rover -lz /tf/caf/landingzones/caf_solution \
+rover -lz /tf/caf/landingzones/caf_solution \
 -level level3 \
 -var-folder /tf/caf/gcc_starter/landingzone/configuration/level3/networking_spoke_internet \
 -env sandpit \
