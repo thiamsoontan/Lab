@@ -37,6 +37,12 @@ if [ ! -d /tf/caf/landingzones ]; then
     # patch to use local copy of aztfmod
     cp /tf/caf/patches/caf_launchpad/landingzone.tf /tf/caf/landingzones/caf_launchpad/landingzone.tf
     cp /tf/caf/patches/caf_solution/landingzone.tf /tf/caf/landingzones/caf_solution/landingzone.tf
+    # patch logic app code no response
+    cp /tf/caf/patches/caf_solution/local.logic_app.tf /tf/caf/landingzones/caf_solution/local.logic_app.tf  
+    # optional: fixed and patch azure bastion, container group, sql server
+    cp /tf/caf/CAF_Patches/bastion/bastion_service.tf /tf/caf/landingzones/aztfmod/bastion_service.tf
+    cp /tf/caf/patches/container_group/container_group.tf /tf/caf/landingzones/aztfmod/modules/compute/container_group/container_group.tf
+    cp /tf/caf/patches/mssqlserver/private_endpoints.tf /tf/caf/landingzones/aztfmod/modules/databases/mssql_server/private_endpoints.tf
     cd /tf/caf/
     # note: /tf/caf/landingzones/aztfmod/main.tf show the version of the azurerm
   fi
