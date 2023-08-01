@@ -37,6 +37,9 @@ rover -lz /tf/caf/landingzones/caf_solution \
 -a apply
 ```
 
+# Next step 
+# Goto README.md at /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows/Readme.md
+
 ```bash
 rover -lz /tf/caf/landingzones/caf_solution \
 -level level3 \
@@ -46,5 +49,3 @@ rover -lz /tf/caf/landingzones/caf_solution \
 -a destroy
 ```
 
-# Next step 
-# Goto README.md at /tf/caf/gcc_starter/landingzone/configuration/level4/vm_windows/Readme.md
