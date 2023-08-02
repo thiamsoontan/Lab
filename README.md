@@ -6,7 +6,7 @@ Clone the repo to your laptop
 
 Open the working folder in Visual Studio Code
 
-(if required), install VSCode extension “Remote-Containers”
+(if required), install VSCode extension “Dev-Containers”
 
 Note: reopen in container when prompt in VS code
 
