@@ -9,7 +9,7 @@ virtual_subnets = {
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage"]
     enforce_private_link_endpoint_network_policies = "true"    
     vnet = {
-      id = "/subscriptions/<subscription id>/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
+      id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-platform/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
     }
   }  
   app_internet_subnet = {
@@ -19,7 +19,7 @@ virtual_subnets = {
     enforce_private_link_endpoint_network_policies = "true"    
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage"]
     vnet = {
-      id = "/subscriptions/<subscription id>/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
+      id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-platform/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
     }    
   }  
   db_internet_subnet = {
@@ -29,7 +29,7 @@ virtual_subnets = {
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage"]
     enforce_private_link_endpoint_network_policies = "true"   
     vnet = {
-      id = "/subscriptions/<subscription id>/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
+      id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-platform/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
     }
   }  
   it_internet_subnet = {
@@ -39,7 +39,7 @@ virtual_subnets = {
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage"]
     enforce_private_link_endpoint_network_policies = "true"    
     vnet = {
-      id = "/subscriptions/<subscription id>/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
+      id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-platform/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
     }
   }  
   gut_internet_subnet = {
@@ -49,7 +49,7 @@ virtual_subnets = {
     service_endpoints = ["Microsoft.KeyVault", "Microsoft.Storage"]
     enforce_private_link_endpoint_network_policies = "true"    
     vnet = {
-      id = "/subscriptions/<subscription id>/resourceGroups/gcci-rg-agency-vnets/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
+      id = "/subscriptions/e22a351f-db36-4a02-9793-0f2189d5f3ab/resourceGroups/gcci-platform/providers/Microsoft.Network/virtualNetworks/gcci-vnet-internet"
     }  
   }  
 
