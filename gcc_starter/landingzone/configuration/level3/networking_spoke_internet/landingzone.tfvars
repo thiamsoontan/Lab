@@ -7,11 +7,6 @@ landingzone = {
     launchpad = {
       level   = "lower"
       tfstate = "caf_launchpad.tfstate" # set to launchpad tfstate name
-    } 
-
-    #shared_services = {
-    #  level   = "current"
-    #  tfstate = "shared_services.tfstate" # set to referenced landingzone tfstate name      
-    #}    
+    }  
   }
 }

@@ -8,16 +8,6 @@ diagnostic_storage_accounts = {
     account_tier             = "Standard"
     account_replication_type = "LRS"
     access_tier              = "Hot"
-
-    # network = {
-    #   bypass = ["None"]
-    #   subnets = {
-    #     subnet1 = {
-    #       # devops subnet id
-    #       remote_subnet_id = ""
-    #     }
-    #   }
-    # }
     
     tags = { 
       purpose = "internet diagnostic_storage_accounts" 
