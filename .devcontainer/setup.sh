@@ -40,14 +40,9 @@ if [ ! -d /tf/caf/landingzones ]; then
     # patch logic app code no response
     cp /tf/caf/patches/caf_solution/local.logic_app.tf /tf/caf/landingzones/caf_solution/local.logic_app.tf  
     # optional: fixed and patch azure bastion, container group, sql server
-    cp /tf/caf/patches/bastion/bastion_service.tf /tf/caf/landingzones/aztfmod/bastion_service.tf
+    cp /tf/caf/CAF_Patches/bastion/bastion_service.tf /tf/caf/landingzones/aztfmod/bastion_service.tf
     cp /tf/caf/patches/container_group/container_group.tf /tf/caf/landingzones/aztfmod/modules/compute/container_group/container_group.tf
     cp /tf/caf/patches/mssqlserver/private_endpoints.tf /tf/caf/landingzones/aztfmod/modules/databases/mssql_server/private_endpoints.tf
-    
-    # fixed hashicorp/random: no available releases match the given constraints ~> 3.3.1, ~> 3.5.0
-    cp /tf/caf/patches/caf_solution/azure_devops_agent/main.tf  /tf/caf/landingzones/caf_solution/add-ons/azure_devops_agent/main.tf
-    cp /tf/caf/patches/aztfmod/main.tf /tf/caf/landingzones/aztfmod/main.tf
-
     cd /tf/caf/
     # note: /tf/caf/landingzones/aztfmod/main.tf show the version of the azurerm
   fi
